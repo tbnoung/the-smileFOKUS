@@ -19,6 +19,10 @@ npm run build
 ```
 npm run lint
 ```
+### ติดตั้ง Allow CORE ACCESS-CONTROL บน Google chrome
+```
+เพื่อให้สามารถยิง API บน localhost
+```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
