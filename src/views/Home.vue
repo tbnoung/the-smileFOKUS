@@ -1,97 +1,118 @@
 <template>
-  <div>
-    <v-row justify="center"  no-gutters>
-      <v-col cols="4" class="textbox_1 pt-5 pl-5">
-        <v-row no-gutters>
-          <v-col cols="9">
-            <span class="headline">Total</span> <span class="display-1">Members :</span>
-          </v-col>
-          <v-col cols="1">
-            <p class="text-right display-1 pl-15">5</p>
-          </v-col>
-          <v-col cols="9">
-            <span class="headline">Total</span> <span class="display-1">Rev.</span><span class="title">(THB)</span>
-          </v-col>
-          <v-col cols="1">
-            <p class="text-right display-1">639K</p>
-          </v-col>
-        </v-row>
-      </v-col>
-      <v-col cols="6" class="textbox_2 pt-2 pl-5 pr-3">
-        <v-row no-gutters>
-          <v-col cols="12">
-            <p class="text-center headline">tttt</p>
-          </v-col>
-          <v-col cols="9">
-            <span class="title">Total</span> <span class="headline">Members :</span>
-          </v-col>
-          <v-col cols="3">
-            <p class="text-right headline">5</p>
-          </v-col>
-          <v-col cols="9">
-            <span class="title">Total</span> <span class="headline">Rev : </span><span class="subtitle-1">(THB)</span>
-          </v-col>
-          <v-col cols="3">
-            <p class="text-right headline">639K</p>
-          </v-col>
-        </v-row>
-      </v-col>
-      <v-col cols="10" class="mt-2">
-        <v-data-table :headers="headers" :items="DataTable" :items-per-page="5" class="elevation-1">
-          <template v-slot:item.customername="{ item }">
-            <p class="text-left mt-5">{{item.customername}}</p>
-          </template>
-          <template v-slot:item.totalamount="{ item }">
-            <p class="text-right mt-5">{{item.totalamount}}</p>
-          </template>
-          <template v-slot:item.totaltransaction="{ item }">
-            <p class="text-right mt-5">{{item.totaltransaction}}</p>
-          </template>
-          <template v-slot:item.totalreward="{ item }">
-            <p class="text-right mt-5">{{item.totalreward}}</p>
-          </template>
-          <template v-slot:item.remainingpoint="{ item }">
-            <p class="text-right mt-5">{{item.remainingpoint}}</p>
-          </template>
-        </v-data-table>
-      </v-col>
-    </v-row>
-  </div>
+  <a-layout>
+    <a-layout-header :style="{ padding: '0', background: '#fff', position: 'fixed', zIndex: 1, width: '100%' }">
+      <a-row type="flex">
+        <a-col :span="18" class="background_header">
+            <a-col :span="10" class="pl-15">
+              <img src="@/assets/A.png" class="img_logo">
+            </a-col>
+            <a-col :span="14" class="pl-15">
+              <a-row type="flex" justify="end">
+                <v-icon large dark>mdi-account-circle-outline</v-icon>
+                <span class="mr-5 font_color">MR.ADMIN</span>
+              </a-row>
+            </a-col>
+        </a-col>
+        <a-col :span="6" class="background_header2">
+          <a-row type="flex" justify="end">
+            <span class="mr-3" style="color:white">MENU</span>
+            <v-icon class="mr-5" large>mdi-cloud-outline</v-icon>
+          </a-row>
+        </a-col>
+      </a-row>
+    </a-layout-header>
+    <a-layout-content :style="{ padding: '0 50px', marginTop: '64px' }">
+      <a-row type="flex">
+        <a-col :span="16">
+          <a-breadcrumb :style="{ margin: '16px 0' }">
+            <a-breadcrumb-item><v-icon small>mdi-home-outline</v-icon></a-breadcrumb-item>
+            <a-breadcrumb-item>Business Insight</a-breadcrumb-item>
+            <a-breadcrumb-item>Report</a-breadcrumb-item>
+            <a-breadcrumb-item>Member</a-breadcrumb-item>
+            <a-breadcrumb-item><span class="title font_color">Member</span></a-breadcrumb-item>
+          </a-breadcrumb>
+        </a-col>
+        <a-col :span="8">
+          <a-row type="flex" justify="end">
+            <v-avatar size="40" class="mt-3 mr-3" v-for="item in 3" :key="item">
+              <v-img src="@/assets/diagram.png" />
+            </v-avatar>
+          </a-row>
+        </a-col>
+      </a-row>
+      <a-row type="flex">
+        <a-col :span="16">
+          <span class="font_color headline mr-3">Yearly Mamber</span><span class="font_color title">01-Jan-2020 to 31-Dec-2020</span>
+        </a-col>
+        <a-col :span="8">
+          <a-row type="flex" justify="end" class="mb-3">
+            <a-select default-value="Year View" style="width: 120px">
+              <a-select-option value="Year View"> Year View</a-select-option>
+            </a-select>
+            <a-date-picker  default-value="2021/04/04" />
+
+          </a-row>
+        </a-col>
+      </a-row>
+      <div :style="{ minHeight: '380px' }">
+        <Table />
+      </div>
+    </a-layout-content>
+    <a-layout-footer :style="{ padding: '0', background: '#fff', marginTop: '95vh', height:'5vh', position: 'fixed', zIndex: 1, width: '100%' }">
+      <a-row type="flex">
+        <v-container grid-list-xs>
+          <a-col :span='10'>
+            <span class="font_color">Total</span>
+          </a-col>
+          <a-col :span='14'>
+            <a-row type="flex" justify="space-between">
+              <span class="font_color">639,498</span>
+              <span class="font_color">7</span>
+              <span class="font_color">47,699</span>
+              <span class="font_color">47,699</span>
+            </a-row>
+          </a-col>
+        </v-container>
+      </a-row>
+    </a-layout-footer>
+  </a-layout>
 </template>
 <script>
-
+import Table from './Table'
 export default {
+  components: {
+    Table
+  },
   data () {
     return {
-      headers: [
-        { text: 'Name', value: 'customername', align: 'center' },
-        { text: 'ID', value: 'customerphone', align: 'center' },
-        { text: 'Tier', value: 'customertier', align: 'center' },
-        { text: 'LTV', value: 'totalamount', align: 'center' },
-        { text: 'Total Trans.', value: 'totaltransaction', align: 'center' },
-        { text: 'Total Point.', value: 'totalreward', align: 'center' },
-        { text: 'Remaining Point.', value: 'remainingpoint', align: 'center' }
-      ],
-      DataTable: []
+      selectItem: 'Year View',
+      items: ['Year View']
     }
-  },
-  async created () {
-    var data = await this.axios.get('https://wegivmerchantapp.firebaseapp.com/exam/bi-member-day-2020-04-01.json')
-    this.DataTable = data.data.data.list
   }
 }
 </script>
 <style>
-th, tr , td {
-  border: 1px solid rgba(0, 0, 0, 0.12);
+#components-layout-demo-fixed .logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 24px 16px 0;
+  float: left;
 }
-.textbox_1 {
-  color: aliceblue;
+.img_logo {
+  max-width: 90px;
+  margin-bottom: 10px;
+}
+.background_header {
+  background-color: black;
+}
+.background_header2 {
   background-color: rgb(249, 145, 37);
-  border-right: 1px solid aliceblue;
 }
-.textbox_2 {
-  color: aliceblue;
-  background-color: rgb(118, 115, 111);
+.background_footer {
+  background-color: white;
+}
+.font_color {
+  color: orange;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-container grid-list-xs>
+    <!-- <v-container grid-list-xs> -->
       <router-view></router-view>
-    </v-container>
+    <!-- </v-container> -->
   </v-app>
 </template>
